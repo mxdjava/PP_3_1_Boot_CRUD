@@ -4,27 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import web.DAO.CarDao;
+import org.springframework.web.bind.annotation.RequestParam;
+import web.model.Car;
+import web.service.CarService;
+
+import java.util.List;
 
 @Controller
-@RequestMapping("/cars")
 public class CarController {
-    private final CarDao carDao;
 
-    public CarController(CarDao carDao) {
-        this.carDao = carDao;
+    private CarService carService;
+
+    @Autowired
+    public CarController(CarService carService) {
+        this.carService = carService;
     }
 
-    @GetMapping()
-    public String AllCars(Model model) {
-        model.addAttribute("cars", carDao.getCars());
+    @GetMapping
+    public String getCars(@RequestParam(name = "count", required = false, defaultValue = "-1") int count, Model model) {
+        List<Car> cars;
+        if (count >= 5) {
+            cars = carService.getAllCars();
+        } else if (count > 0) {
+            cars = carService.getLimitedCars(count);
+        } else {
+            cars = carService.getAllCars();
+        }
+        model.addAttribute("cars", cars);
         return "cars";
-    }
-    @GetMapping("?count={num}")
-    public String numOut (@PathVariable("num") int num, Model model) {
-        model.addAttribute("cars", carDao.numCars(num));
-        return "cars?count={num}";
     }
 }

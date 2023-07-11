@@ -6,15 +6,25 @@
     <title></title>
 </head>
 <body>
-<table border="1">
+<table>
+    <thead>
     <tr>
-        <td>Model</td>
-        <td>Manufacturer</td>
+        <th>Model</th>
+        <th>Manufacturer</th>
+        <th>Year</th>
+        <th>Color</th>
+        <th>Price</th>
     </tr>
-    <tr th:each ="car : ${cars}">
-        <td th:utext="${car.model}">...</td>
-        <td th:utext="${car.manufacturer}">...</td>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.model}">...</td>
+        <td th:text="${car.manufacturer}">...</td>
+        <td th:text="${car.year}">...</td>
+        <td th:text="${car.color}">...</td>
+        <td th:text="${car.price}">...</td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>
