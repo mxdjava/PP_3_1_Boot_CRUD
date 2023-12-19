@@ -19,32 +19,38 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String getAllUsers(Model model){
+    public String getAllUsers(Model model) {
         model.addAttribute("all", userService.readAllUsers());
         return "all-users";
     }
 
     @GetMapping("/addNewUser")
-    public String newUser(Model model){
+    public String newUser(Model model) {
         User user = new User();
-        model.addAttribute("newUser", user);
+        model.addAttribute("user", user);
         return "user-info";
     }
 
     @PostMapping("/saveUser")
-    public String create(@ModelAttribute("newUser") User user){
+    public String create(@ModelAttribute("user") User user) {
         userService.create(user);
         return "redirect:/";
     }
 
-    @GetMapping("/updateInfo")
-    public String updateUser(@RequestParam("userID") int id, Model model ){
-        model.addAttribute("newUser", userService.update(id));
-        return "user-info";
+    @GetMapping("/updateUser")
+    public String updateUserForm(@RequestParam("userID") int id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user-update";
     }
-    //deleteUser
-    @GetMapping ("/deleteUser")
-    public String deleteUser(@RequestParam("userID") int id){
+
+    @PostMapping("/updateUser")
+    public String saveUser(@ModelAttribute("user") User user) {
+        userService.update(user);
+        return "redirect:/";
+    }
+
+    @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userID") int id) {
         userService.delete(id);
         return "redirect:/";
     }

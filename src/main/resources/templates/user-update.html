@@ -7,8 +7,9 @@
 </head>
 <body>
 <div class="center">
-    <h2>Please, input info of a new user.</h2>
-    <form th:action="@{/saveUser}" th:method="POST" th:object="${user}">
+    <h2>Let's make some changes.</h2>
+    <form th:action="@{/updateUser}" th:method="POST" th:object="${user}">
+        <input type="hidden" th:field="*{id}">
         <table class="table">
             <tr>
                 <td>Name:</td>
@@ -29,7 +30,7 @@
                 </label></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Create"></td>
+                <td colspan="2"><input type="submit" value="Update"></td>
             </tr>
         </table>
     </form>
