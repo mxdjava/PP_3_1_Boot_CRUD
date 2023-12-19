@@ -19,18 +19,18 @@
     </tr>
     </thead>
     <tbody>
-    <th:block th:each="usr : ${all}">
+    <th:block th:each="user : ${all}">
       <tr>
-        <td th:text="${usr.id}">ID</td>
-        <td th:text="${usr.name}">Name</td>
-        <td th:text="${usr.surname}">Surname</td>
-        <td th:text="${usr.email}">Email</td>
+        <td th:text="${user.id}">ID</td>
+        <td th:text="${user.name}">Name</td>
+        <td th:text="${user.surname}">Surname</td>
+        <td th:text="${user.email}">Email</td>
         <td class="tg-action">
           <div>
-            <a class="link-button" th:href="@{/updateInfo(userID=${usr.id})}">Update</a>
+            <a class="link-button" th:href="@{/updateUser(userID=${user.id})}">Update</a>
           </div>
           <div>
-            <a class="link-button" th:href="@{/deleteUser(userID=${usr.id})}">Delete</a>
+            <a class="link-button" th:href="@{/deleteUser(userID=${user.id})}">Delete</a>
           </div>
         </td>
       </tr>

@@ -7,29 +7,29 @@
 </head>
 <body>
 <div class="center">
-    <h2>User info</h2>
-    <form th:action="@{/saveUser}" th:method="POST" th:object="${newUser}">
+    <h2>Please, input info of a new user.</h2>
+    <form th:action="@{/saveUser}" th:method="POST" th:object="${user}">
         <table class="table">
             <tr>
                 <td>Name:</td>
                 <td><label>
-                    <input type="text" th:field="*{name}" th:value="${newUser.name}"/>
+                    <input type="text" th:field="*{name}" th:value="${user.name}"/>
                 </label></td>
             </tr>
             <tr>
                 <td>Surname:</td>
                 <td><label>
-                    <input type="text" th:field="*{surname}" th:value="${newUser.surname}"/>
+                    <input type="text" th:field="*{surname}" th:value="${user.surname}"/>
                 </label></td>
             </tr>
             <tr>
                 <td>Email:</td>
                 <td><label>
-                    <input type="text" th:field="*{email}" th:value="${newUser.email}"/>
+                    <input type="text" th:field="*{email}" th:value="${user.email}"/>
                 </label></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Update"></td>
+                <td colspan="2"><input type="submit" value="Create"></td>
             </tr>
         </table>
     </form>
